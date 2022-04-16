@@ -4,7 +4,7 @@ let cpsactionbar = true;
 
 //cps 사용여부 (true/false)
 
-events.serverOpen.on(() => {
+events.playerJoin.on((ev) => {
     bedrockServer.executeCommand(`scoreboard objectives add cps dummy`);
 });
 
@@ -30,3 +30,7 @@ events.playerAttack.on((ev) => {
 const cool = setInterval(() => {
     bedrockServer.executeCommand(`scoreboard players set @a cps 0`);
 },1000);
+
+events.serverClose.on(() => {
+    clearInterval(cool)
+})
