@@ -1,8 +1,7 @@
 //made by Blue00123
 
-let cpsactionbar = true;
-
 //cps 사용여부 (true/false)
+let usecpsactionbar: boolean = true;
 
 events.playerJoin.on((ev) => {
     bedrockServer.executeCommand(`scoreboard objectives add cps dummy`);
@@ -11,9 +10,9 @@ events.playerJoin.on((ev) => {
 events.packetBefore(MinecraftPacketIds.LevelSoundEvent).on((ev, ni) => {
     const playerName = ni.getActor()?.getName();
     if (ev.sound === 42) {
-        bedrockServer.executeCommand(`scoreboard players add ${playerName} cps 1`);
-        if (cpsactionbar === true) {
-        bedrockServer.executeCommand(`titleraw @a actionbar {"rawtext":[{"text":"§fCPS:§f "},{"score":{"name":"*","objective":"cps"}},{"text":""}]}`);
+            bedrockServer.executeCommand(`scoreboard players add ${playerName} cps 1`);
+        if (usecpsactionbar) {
+            bedrockServer.executeCommand(`titleraw @a actionbar {"rawtext":[{"text":"§l§fCPS:§e "},{"score":{"name":"*","objective":"cps"}}]},{"text":""}]}`);`);
         }
     }
 });
@@ -21,8 +20,8 @@ events.packetBefore(MinecraftPacketIds.LevelSoundEvent).on((ev, ni) => {
 events.playerAttack.on((ev) => {
     const playerName = ev.player.getName();
     bedrockServer.executeCommand(`scoreboard players add ${playerName} cps 1`);
-    if (cpsactionbar === true) {
-    bedrockServer.executeCommand(`titleraw @a actionbar {"rawtext":[{"text":"§fCPS:§f "},{"score":{"name":"*","objective":"cps"}},{"text":""}]}`);
+    if (usecpsactionbar) {
+        bedrockServer.executeCommand(`titleraw @a actionbar {"rawtext":[{"text":"§l§fCPS:§e "},{"score":{"name":"*","objective":"cps"}},{"text":""}]}`);
     }
     
 });
