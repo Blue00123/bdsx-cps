@@ -13,6 +13,5 @@ events.packetBefore(MinecraftPacketIds.LevelSoundEvent).on((pkt, ni) => {
                 CPS[playerName]--;
                 bedrockServer.executeCommand(`title ${playerName} actionbar CPS :${CPS[playerName]}`);
             }, 1000);
-        }
     }
 });
